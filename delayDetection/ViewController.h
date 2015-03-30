@@ -13,6 +13,7 @@
     AEAudioController *audioController;
     NSDate *time1;//timeStamp = [[NSDate date] timeIntervalSince1970];
     NSDate *time2;
+    NSMutableArray *delayArray;
 }
 
 

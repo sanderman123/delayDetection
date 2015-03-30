@@ -17,6 +17,7 @@
 		C5E17EC81AC8F3CB00ECD176 /* delayDetectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E17EC71AC8F3CB00ECD176 /* delayDetectionTests.m */; };
 		C5E17ED51AC8F92100ECD176 /* AudioBufferManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E17ED21AC8F92100ECD176 /* AudioBufferManager.m */; };
 		C5E17ED61AC8F92100ECD176 /* MyAudioPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = C5E17ED41AC8F92100ECD176 /* MyAudioPlayer.mm */; };
+		C5E17ED91AC93FF400ECD176 /* CHCSVParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E17ED81AC93FF400ECD176 /* CHCSVParser.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +51,8 @@
 		C5E17ED21AC8F92100ECD176 /* AudioBufferManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioBufferManager.m; sourceTree = "<group>"; };
 		C5E17ED31AC8F92100ECD176 /* MyAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAudioPlayer.h; sourceTree = "<group>"; };
 		C5E17ED41AC8F92100ECD176 /* MyAudioPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyAudioPlayer.mm; sourceTree = "<group>"; };
+		C5E17ED71AC93FF400ECD176 /* CHCSVParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CHCSVParser.h; sourceTree = "<group>"; };
+		C5E17ED81AC93FF400ECD176 /* CHCSVParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CHCSVParser.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +106,8 @@
 		C5E17EAA1AC8F3CB00ECD176 /* delayDetection */ = {
 			isa = PBXGroup;
 			children = (
+				C5E17ED71AC93FF400ECD176 /* CHCSVParser.h */,
+				C5E17ED81AC93FF400ECD176 /* CHCSVParser.m */,
 				C5E17ED11AC8F92100ECD176 /* AudioBufferManager.h */,
 				C5E17ED21AC8F92100ECD176 /* AudioBufferManager.m */,
 				C5E17ED31AC8F92100ECD176 /* MyAudioPlayer.h */,
@@ -290,6 +295,7 @@
 			files = (
 				C5E17EB41AC8F3CB00ECD176 /* ViewController.m in Sources */,
 				C5E17ED61AC8F92100ECD176 /* MyAudioPlayer.mm in Sources */,
+				C5E17ED91AC93FF400ECD176 /* CHCSVParser.m in Sources */,
 				C5E17EB11AC8F3CB00ECD176 /* AppDelegate.m in Sources */,
 				C5E17ED51AC8F92100ECD176 /* AudioBufferManager.m in Sources */,
 				C5E17EAE1AC8F3CB00ECD176 /* main.m in Sources */,
