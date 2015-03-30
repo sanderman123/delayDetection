@@ -59,8 +59,8 @@
     [audioController addChannels:[NSArray arrayWithObject:player1] toChannelGroup:channel1];
     [audioController addChannels:[NSArray arrayWithObject:player2] toChannelGroup:channel2];
     
-    time1 = 0.f;
-    time2 = 0.f;
+//    time1 = 0.f;
+//    time2 = 0.f;
     
     id<AEAudioReceiver> receiver = [AEBlockAudioReceiver audioReceiverWithBlock:
                                     ^(void *source,
@@ -83,26 +83,33 @@
                                         float pwl1;
                                         float peak1;
 //                                        [audioController inputAveragePowerLevel:&pwl peakHoldLevel:&peak];
-                                        [audioController averagePowerLevel:&pwl1 peakHoldLevel:&peak1 forGroup:channel1];
+                                        [audioController averagePowerLevel:&pwl1 peakHoldLevel:&peak1 forGroup:channel2];
 //                                        NSLog(@"1. Avg Power Level: %f, peak: %f",pwl1,peak1);
                                         
-                                        if (peak1 > -10.f) {
-                                            NSLog(@"Peakk!!: %f",peak1);
-                                            time1 = NSTimeIntervalSince1970;
+                                        if (!time1) {
+                                            if (peak1 > -10.f) {
+                                                time1 = [NSDate date];
+//                                                NSLog(@"Peakk!!: %f",peak1);
+                                            }
                                         }
                                         
                                         float pwl2;
                                         float peak2;
-                                        [audioController averagePowerLevel:&pwl2 peakHoldLevel:&peak2 forGroup:channel2];
+                                        [audioController averagePowerLevel:&pwl2 peakHoldLevel:&peak2 forGroup:channel1];
                                        // NSLog(@"1. Avg Power Level: %f, peak: %f",pwl2,peak2);
                                         
-                                        if (time1 > 0.f) {
+                                        if (time1) {
                                             if (peak2 > -10.f) {
-                                                time2 = NSTimeIntervalSince1970;
-                                                double delay = time2 - time1;
-                                                NSLog(@"Delay: %0.0000f", delay);
-                                                time1 = 0.f;
-                                                time2 = 0.f;
+                                                time2 = [NSDate date];
+                                                NSTimeInterval delay = [time2 timeIntervalSinceDate:time1];
+                                                if (delay < 0.06f) {
+                                                    NSLog(@"Delay: %f", delay);
+                                                } else {
+                                                    NSLog(@"Error, Delay: %f", delay);
+                                                }
+
+                                                time1 = nil;
+                                                time2 = nil;
                                             }
                                         }
 

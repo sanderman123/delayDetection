@@ -11,8 +11,8 @@
 
 @interface ViewController : UIViewController{
     AEAudioController *audioController;
-    NSTimeInterval time1;//timeStamp = [[NSDate date] timeIntervalSince1970];
-    NSTimeInterval time2;
+    NSDate *time1;//timeStamp = [[NSDate date] timeIntervalSince1970];
+    NSDate *time2;
 }
 
 
