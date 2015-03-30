@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "TheAmazingAudioEngine.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController{
+    AEAudioController *audioController;
+    NSTimeInterval time1;//timeStamp = [[NSDate date] timeIntervalSince1970];
+    NSTimeInterval time2;
+}
 
 
 @end

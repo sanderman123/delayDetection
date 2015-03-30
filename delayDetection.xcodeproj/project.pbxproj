@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		BFA958B514421EADCA232BDA /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 93619C53779994141CF29F48 /* libPods.a */; };
 		C5E17EAE1AC8F3CB00ECD176 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E17EAD1AC8F3CB00ECD176 /* main.m */; };
 		C5E17EB11AC8F3CB00ECD176 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E17EB01AC8F3CB00ECD176 /* AppDelegate.m */; };
 		C5E17EB41AC8F3CB00ECD176 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E17EB31AC8F3CB00ECD176 /* ViewController.m */; };
@@ -14,6 +15,8 @@
 		C5E17EB91AC8F3CB00ECD176 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C5E17EB81AC8F3CB00ECD176 /* Images.xcassets */; };
 		C5E17EBC1AC8F3CB00ECD176 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = C5E17EBA1AC8F3CB00ECD176 /* LaunchScreen.xib */; };
 		C5E17EC81AC8F3CB00ECD176 /* delayDetectionTests.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E17EC71AC8F3CB00ECD176 /* delayDetectionTests.m */; };
+		C5E17ED51AC8F92100ECD176 /* AudioBufferManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C5E17ED21AC8F92100ECD176 /* AudioBufferManager.m */; };
+		C5E17ED61AC8F92100ECD176 /* MyAudioPlayer.mm in Sources */ = {isa = PBXBuildFile; fileRef = C5E17ED41AC8F92100ECD176 /* MyAudioPlayer.mm */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -27,6 +30,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3ACC586A6B33AC54E90D568A /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		93619C53779994141CF29F48 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		99EB487BAC6F0FA5D2C4F430 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		C5E17EA81AC8F3CB00ECD176 /* delayDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = delayDetection.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5E17EAC1AC8F3CB00ECD176 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5E17EAD1AC8F3CB00ECD176 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -40,6 +46,10 @@
 		C5E17EC11AC8F3CB00ECD176 /* delayDetectionTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = delayDetectionTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		C5E17EC61AC8F3CB00ECD176 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C5E17EC71AC8F3CB00ECD176 /* delayDetectionTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = delayDetectionTests.m; sourceTree = "<group>"; };
+		C5E17ED11AC8F92100ECD176 /* AudioBufferManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AudioBufferManager.h; sourceTree = "<group>"; };
+		C5E17ED21AC8F92100ECD176 /* AudioBufferManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AudioBufferManager.m; sourceTree = "<group>"; };
+		C5E17ED31AC8F92100ECD176 /* MyAudioPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAudioPlayer.h; sourceTree = "<group>"; };
+		C5E17ED41AC8F92100ECD176 /* MyAudioPlayer.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MyAudioPlayer.mm; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +57,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				BFA958B514421EADCA232BDA /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -60,12 +71,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		590C817F50AE2CCE8272329B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3ACC586A6B33AC54E90D568A /* Pods.debug.xcconfig */,
+				99EB487BAC6F0FA5D2C4F430 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		C5E17E9F1AC8F3CB00ECD176 = {
 			isa = PBXGroup;
 			children = (
 				C5E17EAA1AC8F3CB00ECD176 /* delayDetection */,
 				C5E17EC41AC8F3CB00ECD176 /* delayDetectionTests */,
 				C5E17EA91AC8F3CB00ECD176 /* Products */,
+				590C817F50AE2CCE8272329B /* Pods */,
+				D3CF98611551F4558C86D243 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -81,6 +103,10 @@
 		C5E17EAA1AC8F3CB00ECD176 /* delayDetection */ = {
 			isa = PBXGroup;
 			children = (
+				C5E17ED11AC8F92100ECD176 /* AudioBufferManager.h */,
+				C5E17ED21AC8F92100ECD176 /* AudioBufferManager.m */,
+				C5E17ED31AC8F92100ECD176 /* MyAudioPlayer.h */,
+				C5E17ED41AC8F92100ECD176 /* MyAudioPlayer.mm */,
 				C5E17EAF1AC8F3CB00ECD176 /* AppDelegate.h */,
 				C5E17EB01AC8F3CB00ECD176 /* AppDelegate.m */,
 				C5E17EB21AC8F3CB00ECD176 /* ViewController.h */,
@@ -119,6 +145,14 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		D3CF98611551F4558C86D243 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				93619C53779994141CF29F48 /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -126,9 +160,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = C5E17ECB1AC8F3CB00ECD176 /* Build configuration list for PBXNativeTarget "delayDetection" */;
 			buildPhases = (
+				0FA8B40ACE71BA177B69CBDF /* Check Pods Manifest.lock */,
 				C5E17EA41AC8F3CB00ECD176 /* Sources */,
 				C5E17EA51AC8F3CB00ECD176 /* Frameworks */,
 				C5E17EA61AC8F3CB00ECD176 /* Resources */,
+				0D9D9998B6E927E8319059AC /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,13 +250,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0D9D9998B6E927E8319059AC /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		0FA8B40ACE71BA177B69CBDF /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		C5E17EA41AC8F3CB00ECD176 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				C5E17EB41AC8F3CB00ECD176 /* ViewController.m in Sources */,
+				C5E17ED61AC8F92100ECD176 /* MyAudioPlayer.mm in Sources */,
 				C5E17EB11AC8F3CB00ECD176 /* AppDelegate.m in Sources */,
+				C5E17ED51AC8F92100ECD176 /* AudioBufferManager.m in Sources */,
 				C5E17EAE1AC8F3CB00ECD176 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -341,6 +412,7 @@
 		};
 		C5E17ECC1AC8F3CB00ECD176 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3ACC586A6B33AC54E90D568A /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = delayDetection/Info.plist;
@@ -351,6 +423,7 @@
 		};
 		C5E17ECD1AC8F3CB00ECD176 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 99EB487BAC6F0FA5D2C4F430 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = delayDetection/Info.plist;
@@ -412,6 +485,7 @@
 				C5E17ECD1AC8F3CB00ECD176 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C5E17ECE1AC8F3CB00ECD176 /* Build configuration list for PBXNativeTarget "delayDetectionTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +494,7 @@
 				C5E17ED01AC8F3CB00ECD176 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
