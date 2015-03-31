@@ -84,17 +84,16 @@
                    if (peak2 > -10.f) {
                        time2 = [NSDate date];
                        NSTimeInterval delay = [time2 timeIntervalSinceDate:time1];
-//                       if (delay < 0.06f) {
+                       if (delay < 0.06f) {
                            NSString *delayString = [NSString stringWithFormat:@"%f\n",delay];
                            NSLog(@"Delay: %f", delay);
                            [delayArray addObject:delayString];
                            if (delayArray.count == 3) {
                                [self writeResultsToFile];
                            }
-//                       } else {
-//                           NSLog(@"Error, Delay: %f", delay);
-//                       }
-                       
+                       } else {
+                           NSLog(@"Error, Delay: %f", delay);
+                       }
                        time1 = nil;
                        time2 = nil;
                    }
