@@ -20,6 +20,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view, typically from a nib.
     [self setupAudioController];
+    [self checkPeak];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -30,7 +31,7 @@
 
 - (void)setupAudioController{
      audioController = [[AEAudioController alloc] initWithAudioDescription:[AEAudioController nonInterleavedFloatStereoAudioDescription] inputEnabled:YES];
-    audioController.preferredBufferDuration = 0.0029;
+    audioController.preferredBufferDuration = 0.0014;
     
     delayArray = [[NSMutableArray alloc]init];
     
@@ -39,8 +40,8 @@
     AudioBufferList *abl1 = AEAllocateAndInitAudioBufferList([audioController audioDescription], 64);
     AudioBufferList *abl2 = AEAllocateAndInitAudioBufferList([audioController audioDescription], 64);
     
-    AEChannelGroupRef channel1 = [audioController createChannelGroup];
-    AEChannelGroupRef channel2 = [audioController createChannelGroup];
+    channel1 = [audioController createChannelGroup];
+    channel2 = [audioController createChannelGroup];
     [audioController addChannels:[NSArray arrayWithObject:player1] toChannelGroup:channel1];
     [audioController addChannels:[NSArray arrayWithObject:player2] toChannelGroup:channel2];
     
@@ -62,44 +63,7 @@
                [player1 addToBufferAudioBufferList:abl1 frames:frames timestamp:time];
                [player2 addToBufferAudioBufferList:abl2 frames:frames timestamp:time];
                
-               float pwl1;
-               float peak1;
-               //                                        [audioController inputAveragePowerLevel:&pwl peakHoldLevel:&peak];
-               [audioController averagePowerLevel:&pwl1 peakHoldLevel:&peak1 forGroup:channel2];
-               //                                        NSLog(@"1. Avg Power Level: %f, peak: %f",pwl1,peak1);
-               
-               if (!time1) {
-                   if (peak1 > -10.f) {
-                       time1 = [NSDate date];
-                       //                                                NSLog(@"Peakk!!: %f",peak1);
-                   }
-               }
-               
-               float pwl2;
-               float peak2;
-               [audioController averagePowerLevel:&pwl2 peakHoldLevel:&peak2 forGroup:channel1];
-               // NSLog(@"1. Avg Power Level: %f, peak: %f",pwl2,peak2);
-               
-               if (time1) {
-                   if (peak2 > -10.f) {
-                       time2 = [NSDate date];
-                       NSTimeInterval delay = [time2 timeIntervalSinceDate:time1];
-                       if (delay < 0.06f) {
-                           NSString *delayString = [NSString stringWithFormat:@"%f\n",delay];
-                           NSLog(@"Delay: %f", delay);
-                           [delayArray addObject:delayString];
-                           if (delayArray.count == 3) {
-                               [self writeResultsToFile];
-                           }
-                       } else {
-                           NSLog(@"Error, Delay: %f", delay);
-                       }
-                       time1 = nil;
-                       time2 = nil;
-                   }
-               }
-               
-           }];
+            }];
     [audioController addInputReceiver:receiver];
     
     NSError *err = nil;
@@ -113,11 +77,11 @@
 -(void)writeResultsToFile{
     NSDate *date = [NSDate date];
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
-    [formatter setDateFormat:@"yyyy-MM-dd_HH:mm"];
+    [formatter setDateFormat:@"yyyy-MM-dd_HH-mm-ss"];
 //    NSString *dateString = [NSDateFormatter localizedStringFromDate:date dateStyle:NSDateFormatterNoStyle timeStyle:NSDateFormatterMediumStyle];
     NSString *dateString = [formatter stringFromDate:date];
     NSLog(@"Datestring: %@", dateString);
-    NSString *path = [NSString stringWithFormat:@"/Users/Sander/Desktop/Results_%@",dateString];
+    NSString *path = [NSString stringWithFormat:@"/Users/mobilehci/Desktop/Results/Results_%@",dateString];
     NSLog(@"Path: %@",path);
     [[NSFileManager  defaultManager] createFileAtPath:path contents:nil attributes:nil];
     NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingAtPath:path];
@@ -129,13 +93,58 @@
             [fileHandle writeData:data];
         }
         [fileHandle closeFile];
+        NSLog(@"File written");
     } else {
         NSLog(@"Error creating file handle");
-        return;
     }
     
 //    [delayArray writeToFile:@"/Users/Sander/Desktop/Results" atomically:YES];
+    [audioController stop];
+}
 
-    NSLog(@"File written");
+-(void)checkPeak{
+    checkPeakQueue = dispatch_queue_create("checkPeakQueue", DISPATCH_QUEUE_CONCURRENT);
+    dispatch_async(checkPeakQueue, ^{
+        while (true) {
+            float pwl1;
+            float peak1;
+            //                                        [audioController inputAveragePowerLevel:&pwl peakHoldLevel:&peak];
+            [audioController averagePowerLevel:&pwl1 peakHoldLevel:&peak1 forGroup:channel2];
+            //                                        NSLog(@"1. Avg Power Level: %f, peak: %f",pwl1,peak1);
+            
+            if (!time1) {
+                if (peak1 > -9.f) {
+                    time1 = [NSDate date];
+                    //                                                NSLog(@"Peakk!!: %f",peak1);
+                }
+            }
+            
+            float pwl2;
+            float peak2;
+            [audioController averagePowerLevel:&pwl2 peakHoldLevel:&peak2 forGroup:channel1];
+            // NSLog(@"1. Avg Power Level: %f, peak: %f",pwl2,peak2);
+            
+            if (time1) {
+                if (peak2 > -9.f) {
+                    time2 = [NSDate date];
+                    NSTimeInterval delay = [time2 timeIntervalSinceDate:time1];
+                    if (delay < 0.06f && 0.005f < delay) {
+                        NSString *delayString = [NSString stringWithFormat:@"%f\n",delay];
+                        NSLog(@"Delay: %f", delay);
+                        [delayArray addObject:delayString];
+                        if (delayArray.count == 100) {
+                            break;
+                        }
+                    } else {
+                        NSLog(@"Error, Delay: %f", delay);
+                    }
+                    time1 = nil;
+                    time2 = nil;
+                }
+            }
+        }
+        [self writeResultsToFile];
+    });
+    
 }
 @end

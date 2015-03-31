@@ -14,6 +14,9 @@
     NSDate *time1;//timeStamp = [[NSDate date] timeIntervalSince1970];
     NSDate *time2;
     NSMutableArray *delayArray;
+    dispatch_queue_t checkPeakQueue;
+    AEChannelGroupRef channel1;
+    AEChannelGroupRef channel2;
 }
 
 
